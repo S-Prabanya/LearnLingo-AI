@@ -1,0 +1,2058 @@
+/* =========================================================
+   LEARNLINGO AI
+   COMPLETE APPLICATION DESIGN
+========================================================= */
+
+@import url(
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'
+);
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    color: #172033;
+    line-height: 1.6;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(99, 102, 241, 0.10),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(20, 184, 166, 0.08),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eef2ff 0%,
+            #f8fafc 48%,
+            #f0fdfa 100%
+        );
+
+    background-attachment: fixed;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   PAGE WRAPPERS
+========================================================= */
+
+.container,
+.dashboard,
+.student-dashboard,
+.lesson-page,
+.dashboard-container {
+    width: 92%;
+    max-width: 1250px;
+    margin: 35px auto;
+}
+
+
+/* =========================================================
+   HOME PAGE
+========================================================= */
+
+.home-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            rgba(238, 244, 255, 0.38),
+            rgba(245, 248, 255, 0.48)
+        ),
+        url("/static/images/education-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.home-card {
+    width: 100%;
+    max-width: 1050px;
+
+    padding: 45px 50px;
+
+    text-align: center;
+
+    border-radius: 32px;
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.80);
+
+    box-shadow:
+        0 25px 70px
+        rgba(30, 64, 175, 0.18);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.home-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    top: -170px;
+    right: -120px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c63ff,
+            #4f46e5
+        );
+
+    opacity: 0.13;
+}
+
+
+.home-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    bottom: -160px;
+    left: -100px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #14b8a6,
+            #22c55e
+        );
+
+    opacity: 0.10;
+}
+
+
+.home-card h1 {
+    position: relative;
+    z-index: 2;
+
+    font-size: 52px;
+    font-weight: 800;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #312e81,
+            #4f46e5,
+            #7c3aed
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+.home-card > p {
+    position: relative;
+    z-index: 2;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    color: #475569;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   ROLE CARDS
+========================================================= */
+
+.role-container {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 25px;
+
+    margin-top: 35px;
+}
+
+
+.role-card {
+    padding: 38px 30px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(248, 250, 255, 0.94);
+
+    border:
+        1px solid #e2e8ff;
+
+    box-shadow:
+        0 12px 30px
+        rgba(15, 23, 42, 0.06);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.role-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #a5b4fc;
+
+    box-shadow:
+        0 20px 45px
+        rgba(79, 70, 229, 0.15);
+}
+
+
+.role-card h2 {
+    color: #1e293b;
+
+    font-size: 24px;
+
+    margin-bottom: 10px;
+}
+
+
+.role-card p {
+    color: #64748b;
+
+    font-size: 15px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button,
+button {
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 13px 23px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6d5dfc
+        );
+
+    box-shadow:
+        0 8px 22px
+        rgba(79, 70, 229, 0.24);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+
+.primary-button:hover,
+button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 27px
+        rgba(79, 70, 229, 0.32);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   DASHBOARD HEADER
+========================================================= */
+
+.dashboard-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 28px 35px;
+
+    margin-bottom: 30px;
+
+    border-radius: 24px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #312e81 0%,
+            #4f46e5 50%,
+            #6d5dfc 100%
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(79, 70, 229, 0.18);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.dashboard-header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    left: 35%;
+    top: -190px;
+}
+
+
+.dashboard-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    top: -120px;
+    right: -60px;
+}
+
+
+.dashboard-header h1 {
+    font-size: 31px;
+
+    font-weight: 800;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.dashboard-header p {
+    font-size: 14px;
+
+    color: #e0e7ff;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   HEADER ACTION BUTTONS
+========================================================= */
+
+.header-actions {
+    position: relative;
+
+    z-index: 4;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.back-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 20px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255, 255, 255, 0.95);
+
+    color: #4338ca;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px
+        rgba(0, 0, 0, 0.10);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.back-button:hover {
+    transform: translateY(-2px);
+
+    background: white;
+
+    box-shadow:
+        0 10px 22px
+        rgba(0, 0, 0, 0.14);
+}
+
+
+.logout-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 20px;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    background:
+        rgba(239, 68, 68, 0.90);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+    box-shadow:
+        0 7px 18px
+        rgba(127, 29, 29, 0.20);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.logout-button:hover {
+    transform: translateY(-2px);
+
+    background: #dc2626;
+}
+
+
+/* =========================================================
+   GENERAL CARDS
+========================================================= */
+
+.card,
+.form-card,
+.welcome-card,
+.lesson-main-card,
+.student-lesson-card {
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border:
+        1px solid
+        rgba(226, 232, 240, 0.95);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(30, 41, 59, 0.07);
+}
+
+
+/* =========================================================
+   TEACHER DASHBOARD
+========================================================= */
+
+.teacher-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 28px;
+}
+
+
+.card {
+    padding: 30px;
+
+    background: #ffffff;
+}
+
+
+.card h2 {
+    font-size: 23px;
+
+    color: #1e293b;
+
+    margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+form {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+label {
+    font-weight: 700;
+
+    color: #334155;
+
+    margin-bottom: 7px;
+}
+
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    margin-bottom: 18px;
+
+    font-size: 15px;
+
+    color: #1e293b;
+
+    background: #f8fafc;
+
+    border:
+        1px solid #dbe2ef;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(99, 102, 241, 0.10);
+
+    background: #ffffff;
+}
+
+
+textarea {
+    min-height: 160px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   TEACHER LESSON CARDS
+========================================================= */
+
+.lesson-card {
+    text-align: left;
+
+    padding: 20px;
+
+    margin-bottom: 16px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8faff,
+            #ffffff
+        );
+
+    border:
+        1px solid #e2e8f0;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.lesson-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #c7d2fe;
+
+    box-shadow:
+        0 10px 25px
+        rgba(79, 70, 229, 0.10);
+}
+
+
+.lesson-card h3 {
+    color: #172033;
+
+    margin: 10px 0;
+
+    font-size: 19px;
+}
+
+
+.lesson-card p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    border-radius: 18px;
+
+    background: #f8fafc;
+
+    border:
+        1px dashed #cbd5e1;
+}
+
+
+.empty-state h3 {
+    color: #334155;
+
+    margin-bottom: 7px;
+}
+
+
+.empty-state p {
+    color: #64748b;
+}
+
+
+/* =========================================================
+   STUDENT WELCOME CARD
+========================================================= */
+
+.welcome-card {
+    padding: 30px 32px;
+
+    margin-bottom: 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f7f8ff 100%
+        );
+
+    border:
+        1px solid #e2e8ff;
+}
+
+
+.welcome-card::after {
+    content: "🌍";
+
+    position: absolute;
+
+    right: 35px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 75px;
+
+    opacity: 0.07;
+}
+
+
+.welcome-card h2 {
+    color: #312e81;
+
+    font-size: 27px;
+
+    margin-bottom: 8px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.welcome-card p {
+    color: #64748b;
+
+    margin: 0;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   STUDENT DETAILS
+========================================================= */
+
+.student-info {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+.student-info-item {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 8px 14px;
+
+    border-radius: 100px;
+
+    background: #eef2ff;
+
+    border:
+        1px solid #dbe3ff;
+
+    color: #4338ca;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+    color: #1e293b;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   STUDENT LESSON GRID
+========================================================= */
+
+.student-lessons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(300px, 1fr)
+        );
+
+    gap: 24px;
+}
+
+
+/* =========================================================
+   STUDENT LESSON CARD
+========================================================= */
+
+.student-lesson-card {
+    padding: 28px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e5e7eb;
+
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+}
+
+
+.student-lesson-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 100%;
+
+    left: 0;
+    top: 0;
+
+    background:
+        linear-gradient(
+            #4f46e5,
+            #8b5cf6
+        );
+}
+
+
+.student-lesson-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #c7d2fe;
+
+    box-shadow:
+        0 18px 40px
+        rgba(79, 70, 229, 0.12);
+}
+
+
+.student-lesson-card h2 {
+    margin: 11px 0;
+
+    font-size: 21px;
+
+    color: #172033;
+}
+
+
+.student-lesson-card p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin-bottom: 16px;
+}
+
+
+.subject-name {
+    font-weight: 700;
+
+    color: #4f46e5 !important;
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.lesson-class,
+.subject-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 14px;
+
+    border-radius: 100px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.lesson-class {
+    background: #eef2ff;
+
+    color: #4338ca;
+
+    border:
+        1px solid #dbe3ff;
+}
+
+
+.subject-badge {
+    background: #ecfdf5;
+
+    color: #047857;
+
+    border:
+        1px solid #d1fae5;
+}
+
+
+/* =========================================================
+   LOGIN PAGES
+========================================================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TEACHER LOGIN BACKGROUND
+========================================================= */
+
+.teacher-login-page {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(139, 92, 246, 0.22),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(99, 102, 241, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #ede9fe 0%,
+            #f5f3ff 45%,
+            #eef2ff 100%
+        );
+}
+
+
+/* =========================================================
+   STUDENT LOGIN BACKGROUND
+========================================================= */
+
+.student-login-page {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(6, 182, 212, 0.20),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(16, 185, 129, 0.17),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #ecfeff 0%,
+            #f0fdfa 48%,
+            #f8fafc 100%
+        );
+}
+
+
+/* =========================================================
+   LOGIN SHELL
+========================================================= */
+
+.login-shell {
+    width: 100%;
+
+    max-width: 470px;
+}
+
+
+/* =========================================================
+   BACK TO HOME
+========================================================= */
+
+.login-back-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    padding: 9px 14px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.75);
+
+    backdrop-filter: blur(10px);
+
+    color: #475569;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.login-back-link:hover {
+    transform:
+        translateX(-3px);
+
+    background:
+        rgba(255, 255, 255, 0.95);
+}
+
+
+/* =========================================================
+   LOGIN CARD
+========================================================= */
+
+.login-card {
+    width: 100%;
+
+    padding: 38px 38px 34px;
+
+    border-radius: 26px;
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.90);
+
+    box-shadow:
+        0 25px 60px
+        rgba(30, 41, 59, 0.13);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.teacher-login-page .login-card {
+    border-top:
+        5px solid #6d5dfc;
+}
+
+
+.student-login-page .login-card {
+    border-top:
+        5px solid #14b8a6;
+}
+
+
+/* =========================================================
+   LOGIN ICON
+========================================================= */
+
+.login-icon {
+    width: 78px;
+    height: 78px;
+
+    margin:
+        0 auto 14px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 24px;
+
+    font-size: 42px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f5f3ff
+        );
+
+    box-shadow:
+        0 10px 24px
+        rgba(79, 70, 229, 0.11);
+}
+
+
+.student-login-page .login-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #ecfeff,
+            #ecfdf5
+        );
+
+    box-shadow:
+        0 10px 24px
+        rgba(20, 184, 166, 0.10);
+}
+
+
+/* =========================================================
+   LOGIN BRAND
+========================================================= */
+
+.login-brand {
+    text-align: center;
+
+    color: #4f46e5;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 5px;
+}
+
+
+.student-login-page .login-brand {
+    color: #0f766e;
+}
+
+
+/* =========================================================
+   LOGIN TEXT
+========================================================= */
+
+.login-card h1 {
+    text-align: center;
+
+    color: #172033;
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+}
+
+
+.login-subtitle {
+    max-width: 360px;
+
+    margin:
+        0 auto 26px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   LOGIN FORM
+========================================================= */
+
+.login-form label {
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+
+.login-form input {
+    padding: 14px 15px;
+
+    border-radius: 12px;
+
+    margin-bottom: 18px;
+
+    background: #f8fafc;
+
+    border:
+        1px solid #dbe2ef;
+}
+
+
+.teacher-login-page
+.login-form input:focus {
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(124, 58, 237, 0.10);
+}
+
+
+.student-login-page
+.login-form input:focus {
+    border-color: #14b8a6;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(20, 184, 166, 0.10);
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-submit {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    margin-top: 3px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+.teacher-login-page
+.login-submit {
+    background:
+        linear-gradient(
+            135deg,
+            #5b21b6,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 10px 22px
+        rgba(124, 58, 237, 0.24);
+}
+
+
+.student-login-page
+.login-submit {
+    background:
+        linear-gradient(
+            135deg,
+            #0891b2,
+            #14b8a6
+        );
+
+    box-shadow:
+        0 10px 22px
+        rgba(20, 184, 166, 0.22);
+}
+
+
+/* =========================================================
+   LOGIN ERROR
+========================================================= */
+
+.login-error {
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    border-radius: 10px;
+
+    color: #b91c1c;
+
+    background: #fef2f2;
+
+    border:
+        1px solid #fecaca;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   DEMO LOGIN BOX
+========================================================= */
+
+.demo-login {
+    margin-top: 25px;
+
+    padding: 16px 18px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #f1f5f9
+        );
+
+    border:
+        1px dashed #cbd5e1;
+}
+
+
+.demo-login strong {
+    color: #334155;
+
+    font-size: 13px;
+
+    margin-bottom: 4px;
+}
+
+
+.demo-login b {
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   LESSON PAGE
+========================================================= */
+
+.lesson-main-card {
+    padding: 40px;
+
+    margin-bottom: 50px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e2e8f0;
+
+    box-shadow:
+        0 18px 50px
+        rgba(30, 41, 59, 0.08);
+}
+
+
+.lesson-info {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 17px;
+}
+
+
+.lesson-title {
+    font-size: 36px;
+
+    line-height: 1.25;
+
+    margin-bottom: 28px;
+
+    color: #172033;
+
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+}
+
+
+/* =========================================================
+   LANGUAGE SELECTOR
+========================================================= */
+
+.language-section {
+    padding: 22px;
+
+    margin-bottom: 30px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f7ff,
+            #eef2ff
+        );
+
+    border:
+        1px solid #e0e7ff;
+}
+
+
+.language-section label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #3730a3;
+}
+
+
+.language-section select {
+    max-width: 430px;
+
+    margin-bottom: 0;
+
+    background: white;
+}
+
+
+/* =========================================================
+   LEARNING SECTIONS
+========================================================= */
+
+.learning-section,
+.translation-section {
+    margin-top: 30px;
+}
+
+
+.learning-section h2,
+.translation-section h2 {
+    font-size: 22px;
+
+    color: #1e293b;
+
+    margin-bottom: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CONTENT BOXES
+========================================================= */
+
+.content-box,
+.translated-box {
+    padding: 25px 27px;
+
+    margin:
+        15px 0
+        24px;
+
+    border-radius: 16px;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+
+    white-space: pre-line;
+
+    background: #f8fafc;
+
+    border:
+        1px solid #edf2f7;
+}
+
+
+.content-box {
+    border-left:
+        5px solid #6366f1;
+}
+
+
+.translated-box {
+    border-left:
+        5px solid #10b981;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fffc,
+            #f8fafc
+        );
+}
+
+
+.content-box p {
+    margin: 0;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   LESSON ACTION BUTTONS
+========================================================= */
+
+.learning-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin:
+        20px 0
+        28px;
+}
+
+
+/* =========================================================
+   AI SIMPLE EXPLANATION
+========================================================= */
+
+#simplifiedSection {
+    padding: 28px;
+
+    margin-top: 38px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid #ddd6fe;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f3ff,
+            #fafaff
+        );
+}
+
+
+#simplifiedSection > h2 {
+    color: #5b21b6;
+}
+
+
+/* =========================================================
+   TRANSLATED AI SIMPLE EXPLANATION
+========================================================= */
+
+#translatedSimpleSection {
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf5,
+            #f5fffb
+        );
+
+    border:
+        1px solid #bbf7d0;
+}
+
+
+#translatedSimpleSection h2 {
+    color: #047857;
+}
+
+
+/* =========================================================
+   AI QUIZ SECTION
+========================================================= */
+
+.translation-section:has(
+    #generateQuizButton
+) {
+    margin-top: 35px;
+
+    padding: 30px;
+
+    border-radius: 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(250, 250, 255, 0.97),
+            rgba(238, 242, 255, 0.97)
+        );
+
+    border:
+        1px solid #e0e7ff;
+}
+
+
+#quizQuestions > div {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#quizQuestions > div:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(15, 23, 42, 0.08);
+}
+
+
+#quizQuestions label {
+    border:
+        1px solid #e2e8f0;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+#quizQuestions label:hover {
+    background:
+        #eef2ff !important;
+
+    border-color:
+        #a5b4fc;
+
+    transform:
+        translateX(3px);
+}
+
+
+#quizQuestions input[type="radio"] {
+    width: 18px;
+
+    height: 18px;
+
+    accent-color: #4f46e5;
+}
+
+
+/* =========================================================
+   QUIZ RESULT
+========================================================= */
+
+#quizResult {
+    border-radius:
+        17px !important;
+
+    border:
+        1px solid #c7d2fe;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #ecfdf5
+        ) !important;
+
+    box-shadow:
+        0 10px 30px
+        rgba(79, 70, 229, 0.08);
+
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   AUDIO PLAYER
+========================================================= */
+
+#audioPlayer {
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    box-shadow:
+        0 7px 20px
+        rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   SCROLL BAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #eef2ff;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            #818cf8,
+            #6366f1
+        );
+
+    border-radius: 20px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f46e5;
+}
+
+
+/* =========================================================
+   TEXT SELECTION
+========================================================= */
+
+::selection {
+    background: #c7d2fe;
+
+    color: #312e81;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+    max-width: 900px
+) {
+
+    .teacher-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .role-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .lesson-main-card {
+        padding: 30px;
+    }
+
+
+    .lesson-title {
+        font-size: 30px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+    max-width: 650px
+) {
+
+    .container,
+    .dashboard,
+    .student-dashboard,
+    .lesson-page,
+    .dashboard-container {
+        width: 94%;
+
+        margin:
+            18px auto;
+    }
+
+
+    .home-container {
+        padding:
+            20px 12px;
+
+        background-attachment:
+            scroll;
+    }
+
+
+    .home-card {
+        padding:
+            35px 20px;
+
+        border-radius:
+            22px;
+    }
+
+
+    .home-card h1 {
+        font-size: 38px;
+    }
+
+
+    .home-card > p {
+        font-size: 16px;
+    }
+
+
+    .dashboard-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 24px;
+    }
+
+
+    .dashboard-header h1 {
+        font-size: 26px;
+    }
+
+
+    .header-actions {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+
+    .back-button,
+    .logout-button {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .welcome-card {
+        padding: 24px;
+    }
+
+
+    .welcome-card::after {
+        display: none;
+    }
+
+
+    .student-info {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .student-lessons {
+        grid-template-columns: 1fr;
+    }
+
+
+    .lesson-main-card {
+        padding: 20px;
+
+        border-radius: 18px;
+    }
+
+
+    .lesson-title {
+        font-size: 26px;
+    }
+
+
+    .content-box,
+    .translated-box {
+        padding: 20px;
+
+        font-size: 15px;
+    }
+
+
+    .learning-actions {
+        flex-direction: column;
+    }
+
+
+    .learning-actions button {
+        width: 100%;
+    }
+
+
+    .language-section select {
+        max-width: none;
+    }
+
+
+    #simplifiedSection,
+    #translatedSimpleSection {
+        padding: 20px;
+    }
+
+
+    .login-page {
+        padding:
+            20px 14px;
+    }
+
+
+    .login-card {
+        padding:
+            30px 22px;
+
+        border-radius: 22px;
+    }
+
+
+    .login-card h1 {
+        font-size: 26px;
+    }
+
+
+    .login-icon {
+        width: 68px;
+
+        height: 68px;
+
+        font-size: 36px;
+    }
+
+}

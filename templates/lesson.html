@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ lesson["title"] }} - LearnLingo AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="lesson-page">
+
+
+    <!-- HEADER -->
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <h1>
+                LearnLingo AI
+            </h1>
+
+            <p>
+                Breaking Language Barriers in Learning
+            </p>
+
+        </div>
+
+
+        <a
+            href="/student"
+            class="back-button"
+        >
+            Back to Lessons
+        </a>
+
+    </div>
+
+
+    <!-- MAIN CARD -->
+
+    <div class="lesson-main-card">
+
+
+        <!-- HIDDEN DATA -->
+
+        <input
+            type="hidden"
+            id="lessonId"
+            value="{{ lesson['id'] }}"
+        >
+
+
+        <input
+            type="hidden"
+            id="className"
+            value="{{ lesson['class_name'] }}"
+        >
+
+
+        <input
+            type="hidden"
+            id="subjectName"
+            value="{{ lesson['subject'] }}"
+        >
+
+
+        <input
+            type="hidden"
+            id="lessonTitleValue"
+            value="{{ lesson['title'] }}"
+        >
+
+
+        <!-- LESSON INFO -->
+
+        <div class="lesson-info">
+
+            <span class="lesson-class">
+
+                {{ lesson["class_name"] }}
+
+            </span>
+
+
+            <span class="subject-badge">
+
+                {{ lesson["subject"] }}
+
+            </span>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1 class="lesson-title">
+
+            {{ lesson["title"] }}
+
+        </h1>
+
+
+        <!-- LANGUAGE -->
+
+        <div class="language-section">
+
+            <label for="language">
+
+                Choose Your Mother Tongue
+
+            </label>
+
+
+            <select id="language">
+
+                <option value="en">
+                    English
+                </option>
+
+                <option value="ta">
+                    Tamil
+                </option>
+
+                <option value="hi">
+                    Hindi
+                </option>
+
+                <option value="bn">
+                    Bengali
+                </option>
+
+                <option value="ur">
+                    Urdu
+                </option>
+
+                <option value="te">
+                    Telugu
+                </option>
+
+                <option value="ml">
+                    Malayalam
+                </option>
+
+                <option value="kn">
+                    Kannada
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ORIGINAL LESSON -->
+
+        <div class="learning-section">
+
+            <h2>
+                Original Lesson
+            </h2>
+
+
+            <div class="content-box">
+
+                <p id="lessonText">
+                    {{ lesson["content"] }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN ACTIONS -->
+
+        <div class="learning-actions">
+
+
+            <button
+                type="button"
+                onclick="listenOriginalLesson()"
+            >
+                🔊 Listen to Original
+            </button>
+
+
+            <button
+                type="button"
+                id="translateButton"
+            >
+                🌐 Translate
+            </button>
+
+
+            <button
+                type="button"
+                id="simplifyButton"
+            >
+                ✨ Simplify for Me
+            </button>
+
+
+        </div>
+
+
+        <!-- ORIGINAL TRANSLATION -->
+
+        <div class="translation-section">
+
+            <h2>
+                Mother-Tongue Explanation
+            </h2>
+
+
+            <div
+                class="translated-box"
+                id="translatedText"
+            >
+                Select your language and click "Translate".
+            </div>
+
+        </div>
+
+
+        <div class="learning-actions">
+
+            <button
+                type="button"
+                onclick="listenTranslatedLesson()"
+            >
+                🔊 Listen to Translation
+            </button>
+
+        </div>
+
+
+        <!-- AI SIMPLE EXPLANATION -->
+
+        <div
+            class="translation-section"
+            id="simplifiedSection"
+            style="display: none;"
+        >
+
+            <h2>
+                ✨ AI Simple Explanation
+            </h2>
+
+
+            <div
+                class="translated-box"
+                id="simplifiedText"
+            >
+            </div>
+
+
+            <div class="learning-actions">
+
+
+                <button
+                    type="button"
+                    onclick="listenSimplifiedLesson()"
+                >
+                    🔊 Listen to Simple Explanation
+                </button>
+
+
+                <button
+                    type="button"
+                    id="translateSimpleButton"
+                >
+                    🌍 Translate Simple Explanation
+                </button>
+
+
+            </div>
+
+
+            <!-- SIMPLE EXPLANATION TRANSLATION -->
+
+            <div
+                id="translatedSimpleSection"
+                style="
+                    display: none;
+                    margin-top: 25px;
+                "
+            >
+
+                <h2>
+                    🌍 Simple Explanation in Your Mother Tongue
+                </h2>
+
+
+                <div
+                    class="translated-box"
+                    id="translatedSimpleText"
+                >
+                </div>
+
+
+                <div class="learning-actions">
+
+                    <button
+                        type="button"
+                        onclick="listenTranslatedSimpleLesson()"
+                    >
+                        🔊 Listen in Mother Tongue
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI QUIZ -->
+
+        <div
+            class="translation-section"
+            style="margin-top: 35px;"
+        >
+
+            <h2>
+                🧠 AI Learning Quiz
+            </h2>
+
+
+            <p>
+                Test your understanding with
+                5 fresh AI-generated questions.
+            </p>
+
+
+            <div class="learning-actions">
+
+                <button
+                    type="button"
+                    id="generateQuizButton"
+                >
+                    🧠 Generate New Quiz
+                </button>
+
+            </div>
+
+
+            <div
+                id="quizSection"
+                style="
+                    display: none;
+                    margin-top: 25px;
+                "
+            >
+
+
+                <div id="quizQuestions">
+                </div>
+
+
+                <div class="learning-actions">
+
+                    <button
+                        type="button"
+                        id="submitQuizButton"
+                    >
+                        ✅ Submit Quiz
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="quizResult"
+                    style="
+                        display: none;
+                        margin-top: 20px;
+                        padding: 20px;
+                        border-radius: 12px;
+                        background: #f3f5ff;
+                        font-size: 20px;
+                        font-weight: 600;
+                    "
+                >
+                </div>
+
+
+                <div
+                    class="learning-actions"
+                    id="tryAnotherSection"
+                    style="display: none;"
+                >
+
+                    <button
+                        type="button"
+                        id="tryAnotherQuizButton"
+                    >
+                        🔄 Try Another Quiz
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- AUDIO PLAYER -->
+
+        <audio
+            id="audioPlayer"
+            controls
+            style="
+                width: 100%;
+                margin-top: 20px;
+                display: none;
+            "
+        >
+        </audio>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* ==================================================
+   BASIC VARIABLES
+================================================== */
+
+const lessonId =
+    document
+    .getElementById("lessonId")
+    .value;
+
+
+const className =
+    document
+    .getElementById("className")
+    .value;
+
+
+const subjectName =
+    document
+    .getElementById("subjectName")
+    .value;
+
+
+const lessonTitle =
+    document
+    .getElementById("lessonTitleValue")
+    .value;
+
+
+let currentQuiz = [];
+
+
+/*
+    Stores questions generated during this page session.
+
+    Example:
+    Quiz 1 = 5 questions
+    Quiz 2 = next 5 different questions
+
+    Maximum last 20 questions are sent to OpenAI.
+*/
+
+let quizHistory = [];
+
+/*
+    Prevent the same generated quiz from being
+    submitted and saved more than once.
+*/
+let quizSubmitted = false;
+
+
+
+/* ==================================================
+   TRANSLATE ORIGINAL LESSON
+================================================== */
+
+document
+.getElementById("translateButton")
+.addEventListener(
+    "click",
+    async function () {
+
+        const lessonText =
+            document
+            .getElementById("lessonText")
+            .innerText;
+
+
+        const language =
+            document
+            .getElementById("language")
+            .value;
+
+
+        const output =
+            document
+            .getElementById("translatedText");
+
+
+        const button =
+            document
+            .getElementById("translateButton");
+
+
+        if (!lessonText.trim()) {
+
+            output.innerText =
+                "Lesson content is empty.";
+
+            return;
+        }
+
+
+        button.disabled = true;
+
+        button.innerText =
+            "Translating...";
+
+
+        output.innerText =
+            "Please wait. Translating lesson...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/translate",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                text:
+                                    lessonText,
+
+                                language:
+                                    language,
+
+                                lesson_id:
+                                    lessonId
+
+                            })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (result.success) {
+
+                output.innerText =
+                    result.translated_text;
+
+            }
+
+            else {
+
+                output.innerText =
+                    "Translation failed. "
+                    +
+                    result.message;
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "TRANSLATION ERROR:",
+                error
+            );
+
+
+            output.innerText =
+                "Unable to connect to translation service.";
+
+        }
+
+        finally {
+
+            button.disabled =
+                false;
+
+            button.innerText =
+                "🌐 Translate";
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   AI SIMPLIFICATION
+================================================== */
+
+document
+.getElementById("simplifyButton")
+.addEventListener(
+    "click",
+    async function () {
+
+        const lessonText =
+            document
+            .getElementById("lessonText")
+            .innerText;
+
+
+        const section =
+            document
+            .getElementById("simplifiedSection");
+
+
+        const output =
+            document
+            .getElementById("simplifiedText");
+
+
+        const button =
+            document
+            .getElementById("simplifyButton");
+
+
+        if (!lessonText.trim()) {
+
+            alert(
+                "Lesson content is empty."
+            );
+
+            return;
+        }
+
+
+        section.style.display =
+            "block";
+
+
+        output.innerText =
+            "LearnLingo AI is preparing an easy explanation...";
+
+
+        button.disabled =
+            true;
+
+
+        button.innerText =
+            "AI is Simplifying...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/simplify",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                text:
+                                    lessonText,
+
+                                lesson_id:
+                                    lessonId,
+
+                                class_name:
+                                    className,
+
+                                subject:
+                                    subjectName
+
+                            })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (result.success) {
+
+                output.innerText =
+                    result.simplified_text;
+
+            }
+
+            else {
+
+                output.innerText =
+                    "Unable to simplify lesson. "
+                    +
+                    result.message;
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "SIMPLIFY ERROR:",
+                error
+            );
+
+
+            output.innerText =
+                "Unable to connect to AI service.";
+
+        }
+
+        finally {
+
+            button.disabled =
+                false;
+
+
+            button.innerText =
+                "✨ Simplify for Me";
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   TRANSLATE SIMPLE EXPLANATION
+================================================== */
+
+document
+.getElementById("translateSimpleButton")
+.addEventListener(
+    "click",
+    async function () {
+
+        const simplifiedText =
+            document
+            .getElementById("simplifiedText")
+            .innerText;
+
+
+        const language =
+            document
+            .getElementById("language")
+            .value;
+
+
+        const section =
+            document
+            .getElementById(
+                "translatedSimpleSection"
+            );
+
+
+        const output =
+            document
+            .getElementById(
+                "translatedSimpleText"
+            );
+
+
+        const button =
+            document
+            .getElementById(
+                "translateSimpleButton"
+            );
+
+
+        if (
+            !simplifiedText.trim()
+            ||
+            simplifiedText.includes(
+                "LearnLingo AI is preparing"
+            )
+            ||
+            simplifiedText.includes(
+                "Unable to"
+            )
+        ) {
+
+            alert(
+                "Please simplify the lesson first."
+            );
+
+            return;
+        }
+
+
+        if (language === "en") {
+
+            alert(
+                "Please select a mother tongue other than English."
+            );
+
+            return;
+        }
+
+
+        section.style.display =
+            "block";
+
+
+        output.innerText =
+            "Translating simple explanation...";
+
+
+        button.disabled =
+            true;
+
+
+        button.innerText =
+            "Translating...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/translate",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                text:
+                                    simplifiedText,
+
+                                language:
+                                    language
+
+                            })
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (result.success) {
+
+                output.innerText =
+                    result.translated_text;
+
+            }
+
+            else {
+
+                output.innerText =
+                    "Translation failed. "
+                    +
+                    result.message;
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "SIMPLE TRANSLATION ERROR:",
+                error
+            );
+
+
+            output.innerText =
+                "Unable to translate simple explanation.";
+
+        }
+
+        finally {
+
+            button.disabled =
+                false;
+
+
+            button.innerText =
+                "🌍 Translate Simple Explanation";
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   TEXT TO SPEECH
+================================================== */
+
+async function generateSpeech(
+    text,
+    language
+) {
+
+    const audioPlayer =
+        document
+        .getElementById(
+            "audioPlayer"
+        );
+
+
+    if (!text.trim()) {
+
+        alert(
+            "No text available for audio."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/text_to_speech",
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            text:
+                                text,
+
+                            language:
+                                language
+
+                        })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (result.success) {
+
+            audioPlayer.src =
+                result.audio_url;
+
+
+            audioPlayer.style.display =
+                "block";
+
+
+            audioPlayer.load();
+
+
+            try {
+
+                await audioPlayer.play();
+
+            }
+
+            catch (playError) {
+
+                console.log(
+                    "AUDIO PLAY ERROR:",
+                    playError
+                );
+
+            }
+
+        }
+
+        else {
+
+            alert(
+                result.message
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "TTS ERROR:",
+            error
+        );
+
+
+        alert(
+            "Unable to generate audio."
+        );
+
+    }
+
+}
+
+
+
+/* ==================================================
+   LISTEN ORIGINAL
+================================================== */
+
+function listenOriginalLesson() {
+
+    const text =
+        document
+        .getElementById("lessonText")
+        .innerText;
+
+
+    if (!text.trim()) {
+
+        alert(
+            "Lesson content is empty."
+        );
+
+        return;
+    }
+
+
+    generateSpeech(
+        text,
+        "en"
+    );
+
+}
+
+
+
+/* ==================================================
+   LISTEN TRANSLATION
+================================================== */
+
+function listenTranslatedLesson() {
+
+    const text =
+        document
+        .getElementById(
+            "translatedText"
+        )
+        .innerText;
+
+
+    const language =
+        document
+        .getElementById(
+            "language"
+        )
+        .value;
+
+
+    if (
+        !text.trim()
+        ||
+        text.includes(
+            "Select your language"
+        )
+        ||
+        text.includes(
+            "Translation failed"
+        )
+        ||
+        text.includes(
+            "Please wait"
+        )
+        ||
+        text.includes(
+            "Unable to connect"
+        )
+    ) {
+
+        alert(
+            "Please translate the lesson first."
+        );
+
+        return;
+    }
+
+
+    generateSpeech(
+        text,
+        language
+    );
+
+}
+
+
+
+/* ==================================================
+   LISTEN SIMPLE ENGLISH
+================================================== */
+
+function listenSimplifiedLesson() {
+
+    const text =
+        document
+        .getElementById(
+            "simplifiedText"
+        )
+        .innerText;
+
+
+    if (
+        !text.trim()
+        ||
+        text.includes(
+            "LearnLingo AI is preparing"
+        )
+        ||
+        text.includes(
+            "Unable to"
+        )
+    ) {
+
+        alert(
+            "Please simplify the lesson first."
+        );
+
+        return;
+    }
+
+
+    generateSpeech(
+        text,
+        "en"
+    );
+
+}
+
+
+
+/* ==================================================
+   LISTEN TRANSLATED SIMPLE EXPLANATION
+================================================== */
+
+function listenTranslatedSimpleLesson() {
+
+    const text =
+        document
+        .getElementById(
+            "translatedSimpleText"
+        )
+        .innerText;
+
+
+    const language =
+        document
+        .getElementById(
+            "language"
+        )
+        .value;
+
+
+    if (
+        !text.trim()
+        ||
+        text.includes(
+            "Translating simple explanation"
+        )
+        ||
+        text.includes(
+            "Translation failed"
+        )
+        ||
+        text.includes(
+            "Unable to"
+        )
+    ) {
+
+        alert(
+            "Please translate the simple explanation first."
+        );
+
+        return;
+    }
+
+
+    generateSpeech(
+        text,
+        language
+    );
+
+}
+
+
+
+/* ==================================================
+   GENERATE FRESH AI QUIZ
+================================================== */
+
+async function generateNewQuiz() {
+
+    const lessonText =
+        document
+        .getElementById(
+            "lessonText"
+        )
+        .innerText;
+
+
+    const button =
+        document
+        .getElementById(
+            "generateQuizButton"
+        );
+
+
+    const tryAgainButton =
+        document
+        .getElementById(
+            "tryAnotherQuizButton"
+        );
+
+
+    const quizSection =
+        document
+        .getElementById(
+            "quizSection"
+        );
+
+
+    const quizQuestions =
+        document
+        .getElementById(
+            "quizQuestions"
+        );
+
+
+    const quizResult =
+        document
+        .getElementById(
+            "quizResult"
+        );
+
+
+    const tryAnotherSection =
+        document
+        .getElementById(
+            "tryAnotherSection"
+        );
+
+
+    if (!lessonText.trim()) {
+
+        alert(
+            "Lesson content is empty."
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    tryAgainButton.disabled = true;
+
+
+    button.innerText =
+        "AI is Creating New Quiz...";
+
+
+    tryAgainButton.innerText =
+        "Creating New Quiz...";
+
+
+    quizSection.style.display =
+        "block";
+
+
+    quizResult.style.display =
+        "none";
+
+
+    tryAnotherSection.style.display =
+        "none";
+
+
+    quizQuestions.innerHTML =
+        "<p>LearnLingo AI is generating 5 fresh questions...</p>";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/generate_quiz",
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            text:
+                                lessonText,
+
+                            lesson_id:
+                                lessonId,
+
+                            class_name:
+                                className,
+
+                            subject:
+                                subjectName,
+
+                            title:
+                                lessonTitle,
+
+                            previous_questions:
+                                quizHistory
+
+                        })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (result.success) {
+
+            currentQuiz =
+                result.quiz;
+
+            quizSubmitted =
+                false;
+
+            document
+            .getElementById(
+                "submitQuizButton"
+            )
+            .disabled =
+                false;
+
+
+            /*
+                Add new questions to history
+                so next request can avoid them.
+            */
+
+            currentQuiz.forEach(
+                function (item) {
+
+                    quizHistory.push(
+                        item.question
+                    );
+
+                }
+            );
+
+
+            /*
+                Keep only last 20 questions
+                in browser memory.
+            */
+
+            if (
+                quizHistory.length > 20
+            ) {
+
+                quizHistory =
+                    quizHistory.slice(-20);
+
+            }
+
+
+            displayQuiz(
+                currentQuiz
+            );
+
+        }
+
+        else {
+
+            quizQuestions.innerHTML =
+                "<p>"
+                +
+                result.message
+                +
+                "</p>";
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "QUIZ ERROR:",
+            error
+        );
+
+
+        quizQuestions.innerHTML =
+            "<p>Unable to connect to AI quiz service.</p>";
+
+    }
+
+    finally {
+
+        button.disabled =
+            false;
+
+
+        tryAgainButton.disabled =
+            false;
+
+
+        button.innerText =
+            "🧠 Generate New Quiz";
+
+
+        tryAgainButton.innerText =
+            "🔄 Try Another Quiz";
+
+    }
+
+}
+
+
+
+/* ==================================================
+   GENERATE BUTTON
+================================================== */
+
+document
+.getElementById("generateQuizButton")
+.addEventListener(
+    "click",
+    generateNewQuiz
+);
+
+
+
+/* ==================================================
+   TRY ANOTHER QUIZ BUTTON
+================================================== */
+
+document
+.getElementById("tryAnotherQuizButton")
+.addEventListener(
+    "click",
+    generateNewQuiz
+);
+
+
+
+/* ==================================================
+   DISPLAY QUIZ
+================================================== */
+
+function displayQuiz(quiz) {
+
+    const container =
+        document
+        .getElementById(
+            "quizQuestions"
+        );
+
+
+    container.innerHTML = "";
+
+
+    quiz.forEach(
+        function (
+            item,
+            questionIndex
+        ) {
+
+            const questionCard =
+                document.createElement(
+                    "div"
+                );
+
+
+            questionCard.style.background =
+                "#f7f8fc";
+
+
+            questionCard.style.padding =
+                "20px";
+
+
+            questionCard.style.marginBottom =
+                "20px";
+
+
+            questionCard.style.borderRadius =
+                "12px";
+
+
+            questionCard.style.border =
+                "1px solid #e2e4ec";
+
+
+            const questionText =
+                document.createElement(
+                    "h3"
+                );
+
+
+            questionText.innerText =
+                (questionIndex + 1)
+                +
+                ". "
+                +
+                item.question;
+
+
+            questionCard.appendChild(
+                questionText
+            );
+
+
+            item.options.forEach(
+                function (
+                    option,
+                    optionIndex
+                ) {
+
+                    const optionLabel =
+                        document.createElement(
+                            "label"
+                        );
+
+
+                    optionLabel.style.display =
+                        "block";
+
+
+                    optionLabel.style.margin =
+                        "12px 0";
+
+
+                    optionLabel.style.padding =
+                        "12px";
+
+
+                    optionLabel.style.background =
+                        "white";
+
+
+                    optionLabel.style.borderRadius =
+                        "8px";
+
+
+                    optionLabel.style.cursor =
+                        "pointer";
+
+
+                    const radio =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    radio.type =
+                        "radio";
+
+
+                    radio.name =
+                        "question_"
+                        +
+                        questionIndex;
+
+
+                    radio.value =
+                        optionIndex;
+
+
+                    radio.style.marginRight =
+                        "10px";
+
+
+                    optionLabel.appendChild(
+                        radio
+                    );
+
+
+                    optionLabel.appendChild(
+                        document.createTextNode(
+                            option
+                        )
+                    );
+
+
+                    questionCard.appendChild(
+                        optionLabel
+                    );
+
+                }
+            );
+
+
+            const feedback =
+                document.createElement(
+                    "div"
+                );
+
+
+            feedback.id =
+                "feedback_"
+                +
+                questionIndex;
+
+
+            feedback.style.marginTop =
+                "10px";
+
+
+            feedback.style.fontWeight =
+                "600";
+
+
+            questionCard.appendChild(
+                feedback
+            );
+
+
+            container.appendChild(
+                questionCard
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   SUBMIT QUIZ
+================================================== */
+
+document
+.getElementById("submitQuizButton")
+.addEventListener(
+    "click",
+    async function () {
+
+        if (
+            !currentQuiz
+            ||
+            currentQuiz.length === 0
+        ) {
+
+            alert(
+                "Please generate a quiz first."
+            );
+
+            return;
+        }
+
+
+        if (quizSubmitted) {
+
+            alert(
+                "This quiz has already been submitted. Click Try Another Quiz for a new attempt."
+            );
+
+            return;
+        }
+
+
+        let score = 0;
+
+        let answered = 0;
+
+
+        currentQuiz.forEach(
+            function (
+                item,
+                questionIndex
+            ) {
+
+                const selected =
+                    document.querySelector(
+                        'input[name="question_'
+                        +
+                        questionIndex
+                        +
+                        '"]:checked'
+                    );
+
+
+                const feedback =
+                    document
+                    .getElementById(
+                        "feedback_"
+                        +
+                        questionIndex
+                    );
+
+
+                if (!selected) {
+
+                    feedback.innerText =
+                        "⚠ Please select an answer.";
+
+
+                    feedback.style.color =
+                        "#d97706";
+
+
+                    return;
+                }
+
+
+                answered++;
+
+
+                const selectedAnswer =
+                    parseInt(
+                        selected.value
+                    );
+
+
+                if (
+                    selectedAnswer
+                    ===
+                    item.answer_index
+                ) {
+
+                    score++;
+
+
+                    feedback.innerText =
+                        "✅ Correct!";
+
+
+                    feedback.style.color =
+                        "green";
+
+                }
+
+                else {
+
+                    feedback.innerText =
+                        "❌ Incorrect. Correct answer: "
+                        +
+                        item.options[
+                            item.answer_index
+                        ];
+
+
+                    feedback.style.color =
+                        "red";
+
+                }
+
+            }
+        );
+
+
+        if (
+            answered
+            !==
+            currentQuiz.length
+        ) {
+
+            alert(
+                "Please answer all 5 questions before submitting."
+            );
+
+            return;
+        }
+
+
+        quizSubmitted =
+            true;
+
+
+        const resultBox =
+            document
+            .getElementById(
+                "quizResult"
+            );
+
+
+        const tryAnotherSection =
+            document
+            .getElementById(
+                "tryAnotherSection"
+            );
+
+
+        let message = "";
+
+
+        if (score === 5) {
+
+            message =
+                "🌟 Excellent! Perfect Score!";
+
+        }
+
+        else if (score >= 4) {
+
+            message =
+                "🎉 Very Good!";
+
+        }
+
+        else if (score >= 3) {
+
+            message =
+                "👍 Good Job!";
+
+        }
+
+        else {
+
+            message =
+                "📚 Keep Learning! Try Another Quiz.";
+
+        }
+
+
+        resultBox.innerHTML =
+            "Your Score: "
+            +
+            score
+            +
+            " / "
+            +
+            currentQuiz.length
+            +
+            "<br><br>"
+            +
+            message;
+
+
+        resultBox.style.display =
+            "block";
+
+
+        tryAnotherSection.style.display =
+            "flex";
+
+
+        /* ==============================================
+           SAVE STUDENT QUIZ PROGRESS
+        ============================================== */
+
+        const submitQuizButton =
+            document
+            .getElementById(
+                "submitQuizButton"
+            );
+
+
+        submitQuizButton.disabled =
+            true;
+
+
+        try {
+
+            const saveResponse =
+                await fetch(
+                    "/save_quiz_attempt",
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                lesson_id:
+                                    lessonId,
+
+                                score:
+                                    score,
+
+                                total_questions:
+                                    currentQuiz.length
+
+                            })
+
+                    }
+                );
+
+
+            const saveResult =
+                await saveResponse.json();
+
+
+            if (saveResult.success) {
+
+                resultBox.innerHTML +=
+                    "<br><br><span style='font-size:14px; color:#047857;'>✅ Progress saved to your dashboard.</span>";
+
+            }
+
+            else {
+
+                console.log(
+                    "PROGRESS SAVE ERROR:",
+                    saveResult.message
+                );
+
+                resultBox.innerHTML +=
+                    "<br><br><span style='font-size:14px; color:#b45309;'>⚠ Score shown, but progress could not be saved.</span>";
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "PROGRESS SAVE ERROR:",
+                error
+            );
+
+
+            resultBox.innerHTML +=
+                "<br><br><span style='font-size:14px; color:#b45309;'>⚠ Score shown, but progress could not be saved.</span>";
+
+        }
+
+        finally {
+
+            submitQuizButton.disabled =
+                quizSubmitted;
+
+        }
+
+
+        resultBox.scrollIntoView({
+
+            behavior:
+                "smooth",
+
+            block:
+                "center"
+
+        });
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

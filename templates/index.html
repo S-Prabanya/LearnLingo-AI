@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>LearnLingo AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="home-container">
+
+
+    <div class="home-card">
+
+
+        <!-- BRAND -->
+
+        <div
+            style="
+                font-size: 55px;
+                margin-bottom: 5px;
+                position: relative;
+                z-index: 2;
+            "
+        >
+            🌍📚
+        </div>
+
+
+        <h1>
+            LearnLingo AI
+        </h1>
+
+
+        <p>
+            Breaking Language Barriers in Learning
+        </p>
+
+
+        <div
+            style="
+                max-width: 720px;
+                margin: 0 auto 30px auto;
+                color: #64748b;
+                font-size: 16px;
+                line-height: 1.8;
+                position: relative;
+                z-index: 2;
+            "
+        >
+
+            Learn educational content in your preferred
+            mother tongue using AI-powered translation,
+            voice learning, simplified explanations and
+            intelligent quizzes.
+
+        </div>
+
+
+        <!-- ROLE CARDS -->
+
+        <div class="role-container">
+
+
+            <!-- TEACHER -->
+
+            <div class="role-card">
+
+
+                <div
+                    style="
+                        font-size: 48px;
+                        margin-bottom: 12px;
+                    "
+                >
+                    👩‍🏫
+                </div>
+
+
+                <h2>
+                    Teacher Portal
+                </h2>
+
+
+                <p>
+                    Create and upload lessons for students
+                    across different classes and subjects.
+                </p>
+
+
+                <a
+                    href="{{ url_for('teacher_login') }}"
+                    class="primary-button"
+                >
+
+                    👩‍🏫 Teacher Login
+
+                </a>
+
+
+            </div>
+
+
+            <!-- STUDENT -->
+
+            <div class="role-card">
+
+
+                <div
+                    style="
+                        font-size: 48px;
+                        margin-bottom: 12px;
+                    "
+                >
+                    🎓
+                </div>
+
+
+                <h2>
+                    Student Portal
+                </h2>
+
+
+                <p>
+                    Learn lessons with translation,
+                    voice support, AI simplification
+                    and quizzes.
+                </p>
+
+
+                <a
+                    href="{{ url_for('student_login') }}"
+                    class="primary-button"
+                >
+
+                    🎓 Student Login
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div
+            style="
+                margin-top: 35px;
+                padding-top: 25px;
+                border-top: 1px solid #e8ecf5;
+                position: relative;
+                z-index: 2;
+            "
+        >
+
+
+            <div
+                style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 12px;
+                "
+            >
+
+
+                <span
+                    style="
+                        background: #eef2ff;
+                        color: #4338ca;
+                        padding: 8px 14px;
+                        border-radius: 50px;
+                        font-size: 13px;
+                        font-weight: 600;
+                    "
+                >
+                    🌐 AI Translation
+                </span>
+
+
+                <span
+                    style="
+                        background: #ecfdf5;
+                        color: #047857;
+                        padding: 8px 14px;
+                        border-radius: 50px;
+                        font-size: 13px;
+                        font-weight: 600;
+                    "
+                >
+                    🔊 Voice Learning
+                </span>
+
+
+                <span
+                    style="
+                        background: #faf5ff;
+                        color: #7e22ce;
+                        padding: 8px 14px;
+                        border-radius: 50px;
+                        font-size: 13px;
+                        font-weight: 600;
+                    "
+                >
+                    ✨ AI Simplification
+                </span>
+
+
+                <span
+                    style="
+                        background: #fff7ed;
+                        color: #c2410c;
+                        padding: 8px 14px;
+                        border-radius: 50px;
+                        font-size: 13px;
+                        font-weight: 600;
+                    "
+                >
+                    🧠 AI Quiz
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

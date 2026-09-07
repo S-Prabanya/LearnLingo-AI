@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Student Sign Up - LearnLingo AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="login-page student-login-page">
+
+
+    <div class="login-shell">
+
+
+        <!-- BACK TO STUDENT LOGIN -->
+
+        <a
+            href="{{ url_for('student_login') }}"
+            class="login-back-link"
+        >
+            ← Back to Student Login
+        </a>
+
+
+        <!-- SIGN UP CARD -->
+
+        <div class="login-card">
+
+
+            <!-- ICON -->
+
+            <div class="login-icon">
+                🎓
+            </div>
+
+
+            <!-- BRAND -->
+
+            <div class="login-brand">
+                LearnLingo AI
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Student Sign Up
+            </h1>
+
+
+            <!-- SUBTITLE -->
+
+            <p class="login-subtitle">
+
+                Create your student account
+                and start learning lessons
+                in the language you understand best.
+
+            </p>
+
+
+            <!-- ERROR MESSAGE -->
+
+            {% if error %}
+
+                <div class="login-error">
+
+                    {{ error }}
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- SIGN UP FORM -->
+
+            <form
+                method="POST"
+                action="{{ url_for('student_signup') }}"
+                class="login-form"
+            >
+
+
+                <!-- FULL NAME -->
+
+                <label for="name">
+
+                    Full Name
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+
+                <!-- STUDENT ID -->
+
+                <label for="student_id">
+
+                    Student ID
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="student_id"
+                    name="student_id"
+                    placeholder="Example: S002"
+                    autocomplete="username"
+                    required
+                >
+
+
+                <!-- CLASS -->
+
+                <label for="class_name">
+
+                    Select Class
+
+                </label>
+
+
+                <select
+                    id="class_name"
+                    name="class_name"
+                    required
+                >
+
+                    <option
+                        value=""
+                        selected
+                        disabled
+                    >
+                        Choose your class
+                    </option>
+
+                    <option value="Class 1">
+                        Class 1
+                    </option>
+
+                    <option value="Class 2">
+                        Class 2
+                    </option>
+
+                    <option value="Class 3">
+                        Class 3
+                    </option>
+
+                    <option value="Class 4">
+                        Class 4
+                    </option>
+
+                    <option value="Class 5">
+                        Class 5
+                    </option>
+
+                </select>
+
+
+                <!-- EMAIL -->
+
+                <label for="email">
+
+                    Email Address
+
+                </label>
+
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <!-- PASSWORD -->
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Minimum 6 characters"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <label for="confirm_password">
+
+                    Confirm Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="Re-enter your password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+
+                <!-- CREATE ACCOUNT -->
+
+                <button
+                    type="submit"
+                    class="login-submit"
+                >
+
+                    ✨ Create Student Account
+
+                </button>
+
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+
+            <div class="signup-link-section">
+
+                <p>
+
+                    Already have an account?
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('student_login') }}"
+                    class="signup-link"
+                >
+
+                    Login as Student
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

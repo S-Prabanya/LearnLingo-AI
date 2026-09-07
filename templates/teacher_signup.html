@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Teacher Sign Up - LearnLingo AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="login-page teacher-login-page">
+
+
+    <div class="login-shell">
+
+
+        <!-- BACK TO LOGIN -->
+
+        <a
+            href="{{ url_for('teacher_login') }}"
+            class="login-back-link"
+        >
+            ← Back to Teacher Login
+        </a>
+
+
+        <!-- SIGN UP CARD -->
+
+        <div class="login-card">
+
+
+            <!-- ICON -->
+
+            <div class="login-icon">
+                👩‍🏫
+            </div>
+
+
+            <!-- BRAND -->
+
+            <div class="login-brand">
+                LearnLingo AI
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Teacher Sign Up
+            </h1>
+
+
+            <!-- SUBTITLE -->
+
+            <p class="login-subtitle">
+
+                Create your teacher account
+                to upload lessons and support
+                multilingual learning.
+
+            </p>
+
+
+            <!-- ERROR MESSAGE -->
+
+            {% if error %}
+
+                <div class="login-error">
+
+                    {{ error }}
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- SIGN UP FORM -->
+
+            <form
+                method="POST"
+                action="{{ url_for('teacher_signup') }}"
+                class="login-form"
+            >
+
+
+                <!-- NAME -->
+
+                <label for="name">
+
+                    Full Name
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+
+                <!-- TEACHER ID -->
+
+                <label for="teacher_id">
+
+                    Teacher ID
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="teacher_id"
+                    name="teacher_id"
+                    placeholder="Example: T002"
+                    required
+                >
+
+
+                <!-- EMAIL -->
+
+                <label for="email">
+
+                    Email Address
+
+                </label>
+
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <!-- PASSWORD -->
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Minimum 6 characters"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <label for="confirm_password">
+
+                    Confirm Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="Re-enter your password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+
+                <!-- CREATE ACCOUNT BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-submit"
+                >
+
+                    ✨ Create Teacher Account
+
+                </button>
+
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+
+            <div class="signup-link-section">
+
+                <p>
+
+                    Already have an account?
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('teacher_login') }}"
+                    class="signup-link"
+                >
+
+                    Login as Teacher
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

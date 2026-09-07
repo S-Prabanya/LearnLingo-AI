@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Student Login - LearnLingo AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="login-page student-login-page">
+
+
+    <div class="login-shell">
+
+
+        <!-- BACK TO HOME -->
+
+        <a
+            href="{{ url_for('home') }}"
+            class="login-back-link"
+        >
+            ← Back to Home
+        </a>
+
+
+        <!-- LOGIN CARD -->
+
+        <div class="login-card">
+
+
+            <!-- ICON -->
+
+            <div class="login-icon">
+                🎓
+            </div>
+
+
+            <!-- BRAND -->
+
+            <div class="login-brand">
+                LearnLingo AI
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Student Login
+            </h1>
+
+
+            <!-- SUBTITLE -->
+
+            <p class="login-subtitle">
+
+                Sign in to access your lessons,
+                learn in your preferred language,
+                listen to audio explanations
+                and take AI-powered quizzes.
+
+            </p>
+
+
+            <!-- REGISTRATION SUCCESS MESSAGE -->
+
+            {% if registered == "success" %}
+
+                <div class="login-success">
+
+                    ✅ Account created successfully!
+
+                    <br>
+
+                    You can now login using your
+                    Student ID and Password.
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- LOGIN ERROR -->
+
+            {% if error %}
+
+                <div class="login-error">
+
+                    {{ error }}
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                method="POST"
+                action="{{ url_for('student_login') }}"
+                class="login-form"
+            >
+
+
+                <!-- STUDENT ID -->
+
+                <label for="student_id">
+
+                    Student ID
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="student_id"
+                    name="student_id"
+                    placeholder="Enter Student ID"
+                    autocomplete="username"
+                    required
+                >
+
+
+                <!-- PASSWORD -->
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-submit"
+                >
+
+                    🎓 Login as Student
+
+                </button>
+
+
+            </form>
+
+
+            <!-- SIGN UP SECTION -->
+
+            <div class="signup-link-section">
+
+                <p>
+
+                    Don't have a student account?
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('student_signup') }}"
+                    class="signup-link"
+                >
+
+                    Create Student Account
+
+                </a>
+
+            </div>
+
+
+            <!-- DEMO ACCOUNT -->
+
+            <div class="demo-login">
+
+
+                <strong>
+
+                    Demo Student Account
+
+                </strong>
+
+
+                <span>
+
+                    Student ID:
+
+                    <b>
+                        S001
+                    </b>
+
+                </span>
+
+
+                <span>
+
+                    Password:
+
+                    <b>
+                        student123
+                    </b>
+
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

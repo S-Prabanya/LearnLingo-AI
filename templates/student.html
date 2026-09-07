@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Student Dashboard - LearnLingo AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="student-dashboard">
+
+
+    <!-- =========================================
+         DASHBOARD HEADER
+    ========================================== -->
+
+    <div class="dashboard-header">
+
+
+        <!-- LEFT SIDE -->
+
+        <div>
+
+            <h1>
+                LearnLingo AI
+            </h1>
+
+            <p>
+                Student Learning Dashboard
+                &nbsp;•&nbsp;
+                {{ student_name }}
+            </p>
+
+        </div>
+
+
+        <!-- RIGHT SIDE BUTTONS -->
+
+        <div class="header-actions">
+
+            <a
+                href="{{ url_for('home') }}"
+                class="back-button"
+            >
+                🏠 Home
+            </a>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="logout-button"
+            >
+                🚪 Logout
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         WELCOME CARD
+    ========================================== -->
+
+    <div class="welcome-card">
+
+
+        <h2>
+            👋 Welcome, {{ student_name }}!
+        </h2>
+
+
+        <p>
+            Choose a lesson and learn it in the
+            language you understand best.
+        </p>
+
+
+        <!-- STUDENT DETAILS -->
+
+        <div class="student-info">
+
+
+            <span class="student-info-item">
+
+                🎓 Student ID:
+                <strong>
+                    {{ student_id }}
+                </strong>
+
+            </span>
+
+
+            <span class="student-info-item">
+
+                📚 Class:
+                <strong>
+                    {{ student_class }}
+                </strong>
+
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         LEARNING PROGRESS
+    ========================================== -->
+
+    <h2 class="section-title">
+        📊 My Learning Progress
+    </h2>
+
+
+    <div
+        style="
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        "
+    >
+
+
+        <!-- TOTAL ATTEMPTS -->
+
+        <div
+            class="card"
+            style="
+                text-align: center;
+                padding: 24px;
+            "
+        >
+
+            <div
+                style="
+                    font-size: 32px;
+                    margin-bottom: 8px;
+                "
+            >
+                📝
+            </div>
+
+            <h3>
+                Total Attempts
+            </h3>
+
+            <p
+                style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    margin-top: 10px;
+                "
+            >
+                {{ attempts }}
+            </p>
+
+        </div>
+
+
+        <!-- LATEST SCORE -->
+
+        <div
+            class="card"
+            style="
+                text-align: center;
+                padding: 24px;
+            "
+        >
+
+            <div
+                style="
+                    font-size: 32px;
+                    margin-bottom: 8px;
+                "
+            >
+                🕒
+            </div>
+
+            <h3>
+                Latest Score
+            </h3>
+
+
+            <p
+                style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    margin-top: 10px;
+                "
+            >
+
+                {% if latest_attempt %}
+
+                    {{ latest_attempt["score"] }}
+                    /
+                    {{ latest_attempt["total_questions"] }}
+
+                {% else %}
+
+                    -
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+
+        <!-- BEST SCORE -->
+
+        <div
+            class="card"
+            style="
+                text-align: center;
+                padding: 24px;
+            "
+        >
+
+            <div
+                style="
+                    font-size: 32px;
+                    margin-bottom: 8px;
+                "
+            >
+                🏆
+            </div>
+
+            <h3>
+                Best Score
+            </h3>
+
+
+            <p
+                style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    margin-top: 10px;
+                "
+            >
+
+                {% if attempts > 0 %}
+
+                    {{ best_score }} / 5
+
+                {% else %}
+
+                    -
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+
+        <!-- AVERAGE SCORE -->
+
+        <div
+            class="card"
+            style="
+                text-align: center;
+                padding: 24px;
+            "
+        >
+
+            <div
+                style="
+                    font-size: 32px;
+                    margin-bottom: 8px;
+                "
+            >
+                📈
+            </div>
+
+            <h3>
+                Average Score
+            </h3>
+
+
+            <p
+                style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    margin-top: 10px;
+                "
+            >
+
+                {% if attempts > 0 %}
+
+                    {{ average_score }} / 5
+
+                {% else %}
+
+                    -
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         LATEST ACTIVITY
+    ========================================== -->
+
+    {% if latest_attempt %}
+
+        <div
+            class="card"
+            style="
+                margin-bottom: 35px;
+                padding: 24px;
+            "
+        >
+
+            <h3
+                style="
+                    margin-bottom: 15px;
+                "
+            >
+                🎯 Latest Quiz Activity
+            </h3>
+
+
+            <p>
+
+                <strong>
+                    Lesson:
+                </strong>
+
+                {{ latest_attempt["lesson_title"] }}
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    Subject:
+                </strong>
+
+                {{ latest_attempt["subject"] }}
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    Score:
+                </strong>
+
+                {{ latest_attempt["score"] }}
+                /
+                {{ latest_attempt["total_questions"] }}
+
+            </p>
+
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- =========================================
+         AVAILABLE LESSONS
+    ========================================== -->
+
+    <h2 class="section-title">
+        📚 Available Lessons
+    </h2>
+
+
+    <div class="student-lessons">
+
+
+        {% if lessons %}
+
+
+            {% for lesson in lessons %}
+
+
+                <div class="student-lesson-card">
+
+
+                    <!-- CLASS BADGE -->
+
+                    <span class="lesson-class">
+
+                        {{ lesson["class_name"] }}
+
+                    </span>
+
+
+                    <!-- SUBJECT -->
+
+                    <p class="subject-name">
+
+                        {{ lesson["subject"] }}
+
+                    </p>
+
+
+                    <!-- TITLE -->
+
+                    <h2>
+
+                        {{ lesson["title"] }}
+
+                    </h2>
+
+
+                    <!-- CONTENT PREVIEW -->
+
+                    <p>
+
+                        {{ lesson["content"][:100] }}
+
+                        {% if lesson["content"]|length > 100 %}
+
+                            ...
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <!-- START LEARNING -->
+
+                    <a
+                        href="{{ url_for(
+                            'view_lesson',
+                            lesson_id=lesson['id']
+                        ) }}"
+                    >
+
+                        <button type="button">
+
+                            🚀 Start Learning
+
+                        </button>
+
+                    </a>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <!-- NO LESSONS -->
+
+            <div class="card">
+
+
+                <div
+                    style="
+                        text-align: center;
+                        font-size: 45px;
+                        margin-bottom: 10px;
+                    "
+                >
+                    📖
+                </div>
+
+
+                <h3
+                    style="
+                        text-align: center;
+                        margin-bottom: 8px;
+                    "
+                >
+                    No lessons available
+                </h3>
+
+
+                <p
+                    style="
+                        text-align: center;
+                        color: #64748b;
+                    "
+                >
+                    Ask your teacher to upload a lesson.
+                </p>
+
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
